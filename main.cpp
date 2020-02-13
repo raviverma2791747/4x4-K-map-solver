@@ -4,7 +4,7 @@ using namespace std;
 
 int k[4][4];
 
-int table[16][1] ={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+int table[16][1] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 void _table()
 {
     cout<<"+---------+---+\n";
@@ -71,34 +71,42 @@ void k_map_display()
     cout<<"     +------+------+------+------+\n";
 }
 
-void k_map_output(int n1,int n2,int n3,int n4)
-{
-
-}
 void k_map_solver()
 {
-    for(int i=0;i<4;i++)
+    for(int i=0; i<4; i++)
     {
-        for(int j=0;j<4;j++)
+        for(int j=0; j<4; j++)
         {
+
+            /* if(k[i][j] == 1)
+             {
+                 for(int l=0 ; l < 4;l++)
+                 {
+                     if(k[l][0] == 0 || k[l][1] == 0 || k[l][2] == 0 ||  k[l][3] == 0)
+                         {
+                             break;
+                         }
+                 }
+             }
+             */
             if(j<=2)
             {
-               if(k[i][j] == 1 && k[i][j+1] ==  1 && k[i+1][j] && k[i+1][j+1])
-               {
-                  cout<<i<<j<<" "<<i<<j+1<<"\n";
-                  cout<<i+1<<j<<" "<<i+1<<j+1<<"\n";
-                  //k_map_display();
-               }
-            }
-            else
-            {
-                if(k[i][j] ==  1 && k[i-3][j-3] == 1 && k[i][j] == 1 && k[i-2][j-2] == 1)
+                if(k[i][j] == 1 && k[i][j+1]==1 && k[i+1][j] == 1 && k[i+1][j+1] == 1 )
                 {
-                    cout<<i<<j<<" "<<i<<j+1<<"\n";
-                    cout<<i+1<<j<<" "<<i+1<<j+1<<"\n";
-
+                    //cout<<i<<j<<" "<<i<<j+1<<"\n";
+                    //cout<<i+1<<j<<" "<<i+1<<j+1<<"\n";
                 }
             }
+            else if(j == 3 && i <=2)
+            {
+                if(k[i][j] == 1 && k[i+1][j] == 1 && k[i][j-3] == 1 && k[i+1][j-3])
+                {
+                    cout<<i<<j<<" "<<i<<j-3<<"\n";
+                    cout<<i+1<<j<<" "<<i+1<<j-3<<"\n";
+                }
+            }
+            else if()
+
         }
     }
 }
@@ -107,13 +115,13 @@ int main()
 {
     int n=0;
     char choice = 'y';
-    while(choice != 'n')
+    while(n != 15)
     {
-    cout<<"Enter minterms \n";
-    cin>>n;
-    table[n][0]=1;
-    cout<<"Do you want to enter more minterms\n";
-    cin>>choice;
+        cout<<"Enter minterms \n";
+        cin>>n;
+        table[n][0]=1;
+        //cout<<"Do you want to enter more minterms\n";
+        //cin>>choice;
     }
     _table();
     k_map_fill();
