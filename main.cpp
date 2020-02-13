@@ -70,6 +70,39 @@ void k_map_display()
     cout<<"1 0  |      |      |      |      |\n";
     cout<<"     +------+------+------+------+\n";
 }
+
+void k_map_output(int n1,int n2,int n3,int n4)
+{
+
+}
+void k_map_solver()
+{
+    for(int i=0;i<4;i++)
+    {
+        for(int j=0;j<4;j++)
+        {
+            if(j<=2)
+            {
+               if(k[i][j] == 1 && k[i][j+1] ==  1 && k[i+1][j] && k[i+1][j+1])
+               {
+                  cout<<i<<j<<" "<<i<<j+1<<"\n";
+                  cout<<i+1<<j<<" "<<i+1<<j+1<<"\n";
+                  //k_map_display();
+               }
+            }
+            else
+            {
+                if(k[i][j] ==  1 && k[i-3][j-3] == 1 && k[i][j] == 1 && k[i-2][j-2] == 1)
+                {
+                    cout<<i<<j<<" "<<i<<j+1<<"\n";
+                    cout<<i+1<<j<<" "<<i+1<<j+1<<"\n";
+
+                }
+            }
+        }
+    }
+}
+
 int main()
 {
     int n=0;
@@ -85,5 +118,6 @@ int main()
     _table();
     k_map_fill();
     k_map_display();
+    k_map_solver();
     return 0;
 }
