@@ -78,50 +78,127 @@ void k_map_solver()
         for(int j=0; j<4; j++)
         {
 
-            /* if(k[i][j] == 1)
+             /* Group 8 */
+             if( i <=2 && j == 0)
              {
-                 for(int l=0 ; l < 4;l++)
+                 if(k[i][j] == 1 && k[i][j+1] == 1 && k[i][j+2] == 1 && k[i][j+3] == 1 && k[i+1][j] == 1 && k[i+1][j+1] == 1 && k[i+1][j+2] == 1 && k[i+1][j+3] == 1 )
                  {
-                     if(k[l][0] == 0 || k[l][1] == 0 || k[l][2] == 0 ||  k[l][3] == 0)
-                         {
-                             break;
-                         }
+                     cout<<"Group 8 Row\n";
                  }
              }
-             */
-            if(j<=2)
+             if(i == 0 && j<=2)
+             {
+                 if(k[i][j] == 1 && k[i+1][j] == 1 && k[i+2][j] == 1 && k[i+3][j] == 1 && k[i][j+1] == 1 && k[i+1][j+1] == 1 && k[i+2][j+1] == 1 && k[i+3][j+1] == 1 )
+                 {
+                     cout<<"Group 8 Column\n";
+                 }
+             }
+             if( i == 3 && j  == 0)
+             {
+                 if(k[i][j] == 1 && k[i][j+1] == 1 && k[i][j+2] == 1 && k[i][j+3] == 1 && k[i-3][j] == 1 && k[i-3][j+1] == 1 && k[i-3][j+2] == 1 && k[i-3][j+3] == 1 )
+                 {
+                     cout<<"Group 8 Column Vertical\n";
+                 }
+             }
+             if( i == 3 && j  == 0)
+             {
+                 if(k[i][j] == 1 && k[i-1][j] == 1 && k[i-2][j] == 1 && k[i-3][j] == 1 && k[i][j+3] == 1 && k[i-1][j+3] == 1 && k[i-2][j+3] == 1 && k[i-3][j+3] == 1 )
+                 {
+                     cout<<"Group 8 Row Horizontal\n";
+                 }
+             }
+             /* Group 4 Square*/
+            if(j<=2 && i<=2)
             {
                 if(k[i][j] == 1 && k[i][j+1]==1 && k[i+1][j] == 1 && k[i+1][j+1] == 1 )
                 {
-                    //cout<<i<<j<<" "<<i<<j+1<<"\n";
-                    //cout<<i+1<<j<<" "<<i+1<<j+1<<"\n";
+                    cout<<"Group 4 square\n";
                 }
             }
-            else if(j == 3 && i <=2)
+             if(j == 3 && i <=2)
             {
                 if(k[i][j] == 1 && k[i+1][j] == 1 && k[i][j-3] == 1 && k[i+1][j-3])
                 {
-                    cout<<i<<j<<" "<<i<<j-3<<"\n";
-                    cout<<i+1<<j<<" "<<i+1<<j-3<<"\n";
+                cout<<"Group 4  Square Horizontal\n";
                 }
             }
-            else if()
+            if(i == 0 && j <= 2)
+            {
+                if(k[i][j] ==  1 && k[i][j+1] == 1 && k[i+3][j] == 1 && k[i+3][j+1] == 1)
+                {
+                    cout<<"Group 4 Square Vertical\n";
+                }
+            }
+            if( i == 0 && j == 3 )
+            {
+                if(k[i][j] ==  1 && k[i+3][j]==1 && k[i][j-3] == 1 && k[i+3][j-3] == 1)
+                {
+                    cout<<"Group 4 Square four corners\n";
+                }
+            }
+            /* Group 4 Rectangle*/
+            if(i < 4 && j == 0)
+            {
+                if(k[i][j] == 1 && k[i][j+1]== 1 && k[i][j+2] == 1 && k[i][j+3] == 1)
+                {
+                    cout<<"Group 4 Rectangle Row\n";
+                }
+            }
+            if(i == 0 && j <4)
+            {
+                if(k[i][j] == 1 && k[i+1][j]== 1 && k[i+2][j] == 1 && k[i+3][j] == 1)
+                {
+                    cout<<"Group 4 Rectangle Column\n";
+                }
+            }
+            /* Group 2 Row*/
+            if(i < 4 && j<=2 )
+            {
+                if(k[i][j]==1 && k[i][j+1]==1)
+                {
+                    cout<<"Group 2 Row\n";
+                }
+            }
+            if(i < 4 && j == 3)
+            {
+                if(k[i][j]==1 && k[i][j-3]==1)
+                {
+                    cout<<"Group 2 Row Horizontal\n";
+                }
+            }
+            /* Group 2 Column*/
+             if(i <= 2 && j<4 )
+            {
+                if(k[i][j]==1 && k[i+1][j]==1)
+                {
+                    cout<<"Group 2 Column\n";
+                }
+            }
+            if(i == 3 && j < 4)
+            {
+                if(k[i][j]==1 && k[i-3][j]==1)
+                {
+                    cout<<"Group 2 Column Vertical\n";
+                }
+            }
+
 
         }
     }
 }
 
+
 int main()
 {
     int n=0;
     char choice = 'y';
-    while(n != 15)
+    while(choice != 'n')
     {
         cout<<"Enter minterms \n";
         cin>>n;
         table[n][0]=1;
-        //cout<<"Do you want to enter more minterms\n";
-        //cin>>choice;
+        cout<<"Do you want to enter more minterms\n";
+        cin>>choice;
     }
     _table();
     k_map_fill();
