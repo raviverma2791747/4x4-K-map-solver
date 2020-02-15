@@ -218,6 +218,18 @@ void k_map_solver()
                 {
                     cout<<"Group 4 Rectangle Row\n";
                     combination = combination + 1;
+                    no_of_grp = no_of_grp + 1;
+                    g[no_of_grp].no_of_box = 4;
+                    g[no_of_grp].address[0][0] = i;
+                    g[no_of_grp].address[0][1] = j;
+                    g[no_of_grp].address[1][0] = i;
+                    g[no_of_grp].address[1][1] = j+1;
+                    g[no_of_grp].address[2][0] = i;
+                    g[no_of_grp].address[2][1] = j+2;
+                    g[no_of_grp].address[3][0] = i;
+                    g[no_of_grp].address[3][1] = j+3;
+                    g[no_of_grp].name = "rectangle";
+                    g[no_of_grp].direction = "horizontal";
                 }
             }
             if(i == 0 && j <4)
@@ -226,6 +238,17 @@ void k_map_solver()
                 {
                     cout<<"Group 4 Rectangle Column\n";
                     combination = combination + 1;
+                    g[no_of_grp].no_of_box = 4;
+                    g[no_of_grp].address[0][0] = i;
+                    g[no_of_grp].address[0][1] = j;
+                    g[no_of_grp].address[1][0] = i+1;
+                    g[no_of_grp].address[1][1] = j;
+                    g[no_of_grp].address[2][0] = i+2;
+                    g[no_of_grp].address[2][1] = j;
+                    g[no_of_grp].address[3][0] = i+3;
+                    g[no_of_grp].address[3][1] = j;
+                    g[no_of_grp].name = "rectangle";
+                    g[no_of_grp].direction = "vertical";
                 }
             }
             /* Group 2 Row*/
@@ -377,7 +400,7 @@ void grp_selector()
                 }
                 if(g[j].direction == "vertical" && g[i].direction == "horizontal")
                 {
-                    for(int l=0;l<4;l++)
+                    for(int l=0; l<4; l++)
                     {
                         if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1] && g[i].address[l+4][0] == g[j].address[1][0] && g[i].address[l+4][1] == g[j].address[1][1])
                         {
@@ -414,26 +437,31 @@ void grp_selector()
             }
             if(g[i].no_of_box ==  4 && g[j].no_of_box == 2)
             {
-                if(g[j].direction  == "horizontal")
+                if(g[i].name == "square")
                 {
-                    if(g[i].address[0][0] == g[j].address[0][0] && g[i].address[0][1] == g[j].address[0][1] && g[i].address[1][0] == g[j].address[1][0] && g[i].address[1][1] == g[j].address[1][1])
+
+
+                    if(g[j].direction  == "horizontal")
                     {
-                        g[j].no_of_box = 0;
+                        if(g[i].address[0][0] == g[j].address[0][0] && g[i].address[0][1] == g[j].address[0][1] && g[i].address[1][0] == g[j].address[1][0] && g[i].address[1][1] == g[j].address[1][1])
+                        {
+                            g[j].no_of_box = 0;
+                        }
+                        if(g[i].address[2][0] == g[j].address[0][0] && g[i].address[2][1] == g[j].address[0][1] && g[i].address[3][0] == g[j].address[1][0] && g[i].address[3][1] == g[j].address[1][1])
+                        {
+                            g[j].no_of_box = 0;
+                        }
                     }
-                    if(g[i].address[2][0] == g[j].address[0][0] && g[i].address[2][1] == g[j].address[0][1] && g[i].address[3][0] == g[j].address[1][0] && g[i].address[3][1] == g[j].address[1][1])
+                    if(g[j].direction  == "vertical")
                     {
-                        g[j].no_of_box = 0;
-                    }
-                }
-                if(g[j].direction  == "vertical")
-                {
-                    if(g[i].address[0][0] == g[j].address[0][0] && g[i].address[0][1] == g[j].address[0][1] && g[i].address[2][0] == g[j].address[1][0] && g[i].address[2][1] == g[j].address[1][1])
-                    {
-                        g[j].no_of_box = 0;
-                    }
-                    if(g[i].address[1][0] == g[j].address[0][0] && g[i].address[1][1] == g[j].address[0][1] && g[i].address[3][0] == g[j].address[1][0] && g[i].address[3][1] == g[j].address[1][1])
-                    {
-                        g[j].no_of_box = 0;
+                        if(g[i].address[0][0] == g[j].address[0][0] && g[i].address[0][1] == g[j].address[0][1] && g[i].address[2][0] == g[j].address[1][0] && g[i].address[2][1] == g[j].address[1][1])
+                        {
+                            g[j].no_of_box = 0;
+                        }
+                        if(g[i].address[1][0] == g[j].address[0][0] && g[i].address[1][1] == g[j].address[0][1] && g[i].address[3][0] == g[j].address[1][0] && g[i].address[3][1] == g[j].address[1][1])
+                        {
+                            g[j].no_of_box = 0;
+                        }
                     }
                 }
             }
@@ -607,8 +635,6 @@ void expression()
                     cout<<" + ";
                 }
             }
-
-
 
         }
     }
