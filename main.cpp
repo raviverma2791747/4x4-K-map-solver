@@ -339,80 +339,272 @@ void sort_grp()
 
 void grp_selector()
 {
-     for(int i=0;i<=no_of_grp;i++)
-     {
-         for(int j = i + 1; j<=no_of_grp; j++)
-         {
-             if(g[i].no_of_box == 8 && g[j].no_of_box == 1)
-             {
-                for(int l=0;l<8;l++)
-                 {
-                     if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1])
-                     {
-                         g[j].no_of_box = 0;
-                     }
-                 }
-             }
-             if(g[i].no_of_box ==  4 && g[j].no_of_box == 1)
-             {
-                 for(int l=0;l<4;l++)
-                 {
-                     if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1])
-                     {
-                         g[j].no_of_box = 0;
-                     }
-                 }
-             }
-             if(g[i].no_of_box ==  4 && g[j].no_of_box == 2)
-             {
-                 if(g[j].direction  == "horizontal")
-                 {
-                         if(g[i].address[0][0] == g[j].address[0][0] && g[i].address[0][1] == g[j].address[0][1] && g[i].address[1][0] == g[j].address[1][0] && g[i].address[1][1] == g[j].address[1][1])
-                         {
-                             g[j].no_of_box = 0;
-                         }
-                         if(g[i].address[2][0] == g[j].address[0][0] && g[i].address[2][1] == g[j].address[0][1] && g[i].address[3][0] == g[j].address[1][0] && g[i].address[3][1] == g[j].address[1][1])
-                         {
-                             g[j].no_of_box = 0;
-                         }
-                 }
-                 if(g[j].direction  == "vertical")
-                 {
-                         if(g[i].address[0][0] == g[j].address[0][0] && g[i].address[0][1] == g[j].address[0][1] && g[i].address[2][0] == g[j].address[1][0] && g[i].address[2][1] == g[j].address[1][1])
-                         {
-                             g[j].no_of_box = 0;
-                         }
-                         if(g[i].address[1][0] == g[j].address[0][0] && g[i].address[1][1] == g[j].address[0][1] && g[i].address[3][0] == g[j].address[1][0] && g[i].address[3][1] == g[j].address[1][1])
-                         {
-                             g[j].no_of_box = 0;
-                         }
-                 }
-             }
-             if(g[i].no_of_box ==  2 && g[j].no_of_box == 1)
-             {
-                 if((g[i].address[0][0] == g[j].address[0][0] && g[i].address[0][1] == g[j].address[0][1]) || ( g[i].address[1][0] == g[j].address[0][0] && g[i].address[1][1] == g[j].address[0][1]))
-                 {
-                     g[j].no_of_box = 0;
-                 }
-             }
-         }
-     }
-     sort_grp();
+    for(int i=0; i<=no_of_grp; i++)
+    {
+        for(int j = i + 1; j<=no_of_grp; j++)
+        {
+            if(g[i].no_of_box == 8 && g[j].no_of_box == 1)
+            {
+                for(int l=0; l<8; l++)
+                {
+                    if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1])
+                    {
+                        g[j].no_of_box = 0;
+                    }
+                }
+            }
+            if(g[i].no_of_box == 8 && g[j].no_of_box == 2)
+            {
+                if(g[j].direction == "horizontal" && g[i].direction == "horizontal")
+                {
 
-     for(int i=0;i<=no_of_grp;i++)
-     {
-         if(g[i].no_of_box == 0)
-         {
-             no_of_grp = i - 1;
-             break;
-         }
-     }
+                    for(int m=0; m<3; m++)
+                    {
+
+                        if(g[i].address[m][0] == g[j].address[0][0] && g[i].address[m][1] == g[j].address[0][1] && g[i].address[m+1][0] == g[j].address[1][0] && g[i].address[m+1][1] == g[j].address[1][1])
+                        {
+                            g[j].no_of_box = 0;
+                        }
+                    }
+                    for(int l=4; l<7; l++)
+                    {
+                        if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1] && g[i].address[l+1][0] == g[j].address[1][0] && g[i].address[l+1][1] == g[j].address[1][1])
+                        {
+                            g[j].no_of_box = 0;
+                        }
+                    }
+
+                }
+            }
+            if(g[i].no_of_box == 8 && g[j].no_of_box == 4)
+            {
+                if(g[j].name == "square")
+                {
+                    if(g[j].direction == "none" && g[i].direction == "horizontal")
+                    {
+                        for(int l=0; l<3; l++)
+                        {
+                            if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1] && g[i].address[l+1][0] == g[j].address[1][0] && g[i].address[l+1][1] == g[j].address[1][1] && g[i].address[l+4][0] == g[j].address[2][0] && g[i].address[l+4][1] == g[j].address[2][1] && g[i].address[l+5][0] == g[j].address[3][0] && g[i].address[l+5][1] == g[j].address[3][1] )
+                            {
+                                g[j].no_of_box = 0;
+                            }
+                        }
+                    }
+                }
+            }
+            if(g[i].no_of_box ==  4 && g[j].no_of_box == 1)
+            {
+                for(int l=0; l<4; l++)
+                {
+                    if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1])
+                    {
+                        g[j].no_of_box = 0;
+                    }
+                }
+            }
+            if(g[i].no_of_box ==  4 && g[j].no_of_box == 2)
+            {
+                if(g[j].direction  == "horizontal")
+                {
+                    if(g[i].address[0][0] == g[j].address[0][0] && g[i].address[0][1] == g[j].address[0][1] && g[i].address[1][0] == g[j].address[1][0] && g[i].address[1][1] == g[j].address[1][1])
+                    {
+                        g[j].no_of_box = 0;
+                    }
+                    if(g[i].address[2][0] == g[j].address[0][0] && g[i].address[2][1] == g[j].address[0][1] && g[i].address[3][0] == g[j].address[1][0] && g[i].address[3][1] == g[j].address[1][1])
+                    {
+                        g[j].no_of_box = 0;
+                    }
+                }
+                if(g[j].direction  == "vertical")
+                {
+                    if(g[i].address[0][0] == g[j].address[0][0] && g[i].address[0][1] == g[j].address[0][1] && g[i].address[2][0] == g[j].address[1][0] && g[i].address[2][1] == g[j].address[1][1])
+                    {
+                        g[j].no_of_box = 0;
+                    }
+                    if(g[i].address[1][0] == g[j].address[0][0] && g[i].address[1][1] == g[j].address[0][1] && g[i].address[3][0] == g[j].address[1][0] && g[i].address[3][1] == g[j].address[1][1])
+                    {
+                        g[j].no_of_box = 0;
+                    }
+                }
+            }
+            if(g[i].no_of_box ==  2 && g[j].no_of_box == 1)
+            {
+                if((g[i].address[0][0] == g[j].address[0][0] && g[i].address[0][1] == g[j].address[0][1]) || ( g[i].address[1][0] == g[j].address[0][0] && g[i].address[1][1] == g[j].address[0][1]))
+                {
+                    g[j].no_of_box = 0;
+                }
+            }
+        }
+    }
+    sort_grp();
+
+    for(int i=0; i<=no_of_grp; i++)
+    {
+        if(g[i].no_of_box == 0)
+        {
+            no_of_grp = i - 1;
+            break;
+        }
+    }
 }
 
 void expression()
 {
+    for(int i=0; i<=no_of_grp; i++)
+    {
+        if(g[i].no_of_box == 8)
+        {
+            if(g[i].direction == "horizontal")
+            {
+                if(g[i].address[0][0] == 0 && g[i].address[4][0] == 1)
+                {
+                    cout<<"a'b'c'd'";
+                    if(i != no_of_grp)
+                    {
+                        cout<<" + ";
+                    }
+                }
+
+            }
+        }
+        if(g[i].no_of_box == 1)
+        {
+            if(g[i].address[0][0] == 0 && g[i].address[0][1] == 0)
+            {
+                cout<<"a'b'c'd'";
+                if(i != no_of_grp)
+                {
+                    cout<<" + ";
+                }
+            }
+            else if(g[i].address[0][0] == 0 && g[i].address[0][1] == 1)
+            {
+                cout<<"a'b'c'd ";
+                if(i != no_of_grp)
+                {
+                    cout<<" + ";
+                }
+            }
+            else if(g[i].address[0][0] == 0 && g[i].address[0][1] == 2)
+            {
+                cout<<"a'b'c d ";
+                if(i != no_of_grp)
+                {
+                    cout<<" + ";
+                }
+            }
+            else if(g[i].address[0][0] == 0 && g[i].address[0][1] == 3)
+            {
+                cout<<"a'b'c d'";
+                if(i != no_of_grp)
+                {
+                    cout<<" + ";
+                }
+            }
+            else if(g[i].address[0][0] == 1 && g[i].address[0][1] == 0)
+            {
+                cout<<"a'b c'd'";
+                if(i != no_of_grp)
+                {
+                    cout<<" + ";
+                }
+            }
+            else if(g[i].address[0][0] == 1 && g[i].address[0][1] == 1)
+            {
+                cout<<"a'b c'd ";
+                if(i != no_of_grp)
+                {
+                    cout<<" + ";
+                }
+            }
+            else if(g[i].address[0][0] == 1 && g[i].address[0][1] == 2)
+            {
+                cout<<"a'b c d ";
+                if(i != no_of_grp)
+                {
+                    cout<<" + ";
+                }
+            }
+            else if(g[i].address[0][0] == 1 && g[i].address[0][1] == 3)
+            {
+                cout<<"a'b c d'";
+                if(i != no_of_grp)
+                {
+                    cout<<" + ";
+                }
+            }
+            else if(g[i].address[0][0] == 2 && g[i].address[0][1] == 0)
+            {
+                cout<<"a b'c'd ";
+                if(i != no_of_grp)
+                {
+                    cout<<" + ";
+                }
+            }
+            else if(g[i].address[0][0] == 2 && g[i].address[0][1] == 1)
+            {
+                cout<<"a b'c'd ";
+                if(i != no_of_grp)
+                {
+                    cout<<" + ";
+                }
+            }
+            else if(g[i].address[0][0] == 2 && g[i].address[0][1] == 2)
+            {
+                cout<<"a b'c'd ";
+                if(i != no_of_grp)
+                {
+                    cout<<" + ";
+                }
+            }
+            else if(g[i].address[0][0] == 2 && g[i].address[0][1] == 3)
+            {
+                cout<<"a b'c'd ";
+                if(i != no_of_grp)
+                {
+                    cout<<" + ";
+                }
+            }
+            else if(g[i].address[0][0] == 3 && g[i].address[0][1] == 0)
+            {
+                cout<<"a b'c'd ";
+                if(i != no_of_grp)
+                {
+                    cout<<" + ";
+                }
+            }
+            else if(g[i].address[0][0] == 3 && g[i].address[0][1] == 1)
+            {
+                cout<<"a b'c'd ";
+                if(i != no_of_grp)
+                {
+                    cout<<" + ";
+                }
+            }
+            else if(g[i].address[0][0] == 3 && g[i].address[0][1] == 2)
+            {
+                cout<<"a b'c'd ";
+                if(i != no_of_grp)
+                {
+                    cout<<" + ";
+                }
+            }
+            else if(g[i].address[0][0] == 3 && g[i].address[0][1] == 3)
+            {
+                cout<<"a b'c'd ";
+                if(i != no_of_grp)
+                {
+                    cout<<" + ";
+                }
+            }
+
+
+
+        }
+    }
 
 }
+
 int main()
 {
     int n=0;
@@ -435,5 +627,6 @@ int main()
     grp_selector();
     cout<<"\n Groups after selection \n";
     groups();
+    expression();
     return 0;
 }
