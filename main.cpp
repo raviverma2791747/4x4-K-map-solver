@@ -375,6 +375,16 @@ void grp_selector()
                     }
 
                 }
+                if(g[j].direction == "vertical" && g[i].direction == "horizontal")
+                {
+                    for(int l=0;l<4;l++)
+                    {
+                        if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1] && g[i].address[l+4][0] == g[j].address[1][0] && g[i].address[l+4][1] == g[j].address[1][1])
+                        {
+                            g[j].no_of_box = 0;
+                        }
+                    }
+                }
             }
             if(g[i].no_of_box == 8 && g[j].no_of_box == 4)
             {
