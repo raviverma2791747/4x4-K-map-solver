@@ -238,6 +238,7 @@ void k_map_solver()
                 {
                     cout<<"Group 4 Rectangle Column\n";
                     combination = combination + 1;
+                    no_of_grp = no_of_grp + 1;
                     g[no_of_grp].no_of_box = 4;
                     g[no_of_grp].address[0][0] = i;
                     g[no_of_grp].address[0][1] = j;
@@ -440,7 +441,6 @@ void grp_selector()
                 if(g[i].name == "square")
                 {
 
-
                     if(g[j].direction  == "horizontal")
                     {
                         if(g[i].address[0][0] == g[j].address[0][0] && g[i].address[0][1] == g[j].address[0][1] && g[i].address[1][0] == g[j].address[1][0] && g[i].address[1][1] == g[j].address[1][1])
@@ -464,6 +464,31 @@ void grp_selector()
                         }
                     }
                 }
+                else if(g[i].name == "rectangle")
+                {
+                    if(g[j].direction == "horizontal" && g[i].direction == "horizontal")
+                    {
+                        for(int l=0;l<3;l++)
+                        {
+                            if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1] && g[i].address[l+1][0] == g[j].address[1][0] && g[i].address[l+1][1] == g[j].address[1][1] )
+                            {
+                                g[j].no_of_box = 0;
+                            }
+
+                        }
+                    }
+                    if(g[j].direction == "vertical" && g[i].direction == "vertical")
+                    {
+                        for(int l=0;l<3;l++)
+                        {
+                            if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1] && g[i].address[l+1][0] == g[j].address[1][0] && g[i].address[l+1][1] == g[j].address[1][1] )
+                            {
+                                g[j].no_of_box = 0;
+                            }
+
+                        }
+                    }
+                }
             }
             if(g[i].no_of_box ==  2 && g[j].no_of_box == 1)
             {
@@ -471,6 +496,7 @@ void grp_selector()
                 {
                     g[j].no_of_box = 0;
                 }
+
             }
         }
     }
