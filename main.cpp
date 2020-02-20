@@ -412,10 +412,12 @@ void grp_selector()
                                 g[j].no_of_box = 0;
                             }
                         }
+
                     }
                 }
                 if(g[i].direction == "vertical")
                 {
+                    /*ERROR */
                     if(g[j].direction == "horizontal")
                     {
                         for(int l=0; l<3; l++)
@@ -426,6 +428,7 @@ void grp_selector()
                             }
                         }
                     }
+                    /*----*/
                     if(g[j].direction == "vertical")
                     {
                         for(int l=0; l<=6; l++)
