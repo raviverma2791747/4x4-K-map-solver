@@ -275,6 +275,15 @@ void k_map_solver()
                 {
                     cout<<"Group 2 Row Horizontal\n";
                     combination = combination + 1;
+                    /*no_of_grp = no_of_grp + 1;
+                    g[no_of_grp].no_of_box = 2;
+                    g[no_of_grp].address[0][0] = i ;
+                    g[no_of_grp].address[0][1] = j;
+                    g[no_of_grp].address[1][0] = i ;
+                    g[no_of_grp].address[1][1] = j+1;
+                    g[no_of_grp].name = "duo row";
+                    g[no_of_grp].direction = "horizontal";
+                    */
                 }
             }
             /* Group 2 Column*/
@@ -300,6 +309,15 @@ void k_map_solver()
                 {
                     cout<<"Group 2 Column Vertical\n";
                     combination = combination + 1;
+                   /* no_of_grp = no_of_grp + 1;
+                    g[no_of_grp].no_of_box = 2;
+                    g[no_of_grp].address[0][0] = i ;
+                    g[no_of_grp].address[0][1] = j;
+                    g[no_of_grp].address[1][0] = i ;
+                    g[no_of_grp].address[1][1] = j-3;
+                    g[no_of_grp].name = "duo column";
+                    g[no_of_grp].direction = "vertical";
+                    */
                 }
             }
             /*Group 1*/
@@ -557,11 +575,10 @@ void grp_selector()
             }
             if(g[i].no_of_box ==  2 && g[j].no_of_box == 1)
             {
-                if((g[i].address[0][0] == g[j].address[0][0] && g[i].address[0][1] == g[j].address[0][1]) || ( g[i].address[1][0] == g[j].address[0][0] && g[i].address[1][1] == g[j].address[0][1]))
-                {
-                    g[j].no_of_box = 0;
-                }
-
+                    if((g[i].address[0][0] == g[j].address[0][0] && g[i].address[0][1] == g[j].address[0][1]) || ( g[i].address[1][0] == g[j].address[0][0] && g[i].address[1][1] == g[j].address[0][1]))
+                    {
+                        g[j].no_of_box = 0;
+                    }
             }
         }
     }
