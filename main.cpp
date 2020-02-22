@@ -3,6 +3,8 @@
 
 using namespace std;
 
+#define WORKZONE 0
+
 struct group
 {
     int no_of_box;
@@ -399,8 +401,7 @@ void grp_selector()
                 if(g[i].direction == "horizontal")
                 {
 
-
-                    if(g[j].direction == "horizontal" )
+                    if(g[j].direction == "horizontal" && g[j].name == "duo")
                     {
 
                         for(int m=0; m<3; m++)
@@ -420,7 +421,7 @@ void grp_selector()
                         }
 
                     }
-                    if(g[j].direction == "vertical")
+                    if(g[j].direction == "vertical" && g[j].name == "duo")
                     {
                         for(int l=0; l<4; l++)
                         {
@@ -431,11 +432,20 @@ void grp_selector()
                         }
 
                     }
+                     if(g[j].direction == "horizontal" && g[j].name == "duo row")
+                    {
+
+                           if(g[i].address[0][0] == g[j].address[0][0] || g[i].address[4][0] == g[j].address[0][0] )
+                           {
+                               g[j].no_of_box = 0;
+                           }
+
+                    }
                 }
                 if(g[i].direction == "vertical")
                 {
 
-                    if(g[j].direction == "horizontal")
+                    if(g[j].direction == "horizontal" && g[j].name == "duo")
                     {
                         for(int l=0; l<4; l++)
                         {
@@ -446,7 +456,7 @@ void grp_selector()
                         }
                     }
 
-                    if(g[j].direction == "vertical")
+                    if(g[j].direction == "vertical" && g[j].name == "duo")
                     {
                         for(int l=0; l<=6; l++)
                         {
