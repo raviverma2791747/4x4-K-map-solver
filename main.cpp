@@ -119,7 +119,6 @@ void k_map_solver()
                     g[no_of_grp].address[7][1] = j+3;
                     g[no_of_grp].name = "rectangle";
                     g[no_of_grp].direction = "horizontal";
-
                 }
             }
             if(i == 0 && j<=2)
@@ -148,7 +147,6 @@ void k_map_solver()
                     g[no_of_grp].address[7][1] = j+1;
                     g[no_of_grp].name = "rectangle";
                     g[no_of_grp].direction = "vertical";
-
                 }
             }
             if( i == 3 && j  == 0)
@@ -186,7 +184,6 @@ void k_map_solver()
                     g[no_of_grp].address[3][1] = j+1;
                     g[no_of_grp].name = "square";
                     g[no_of_grp].direction = "none";
-
                 }
             }
             if(j == 3 && i <=2)
@@ -285,7 +282,6 @@ void k_map_solver()
                     g[no_of_grp].address[1][1] = j-3;
                     g[no_of_grp].name = "duo row";
                     g[no_of_grp].direction = "horizontal";
-
                 }
             }
             /* Group 2 Column*/
@@ -334,7 +330,6 @@ void k_map_solver()
                     g[no_of_grp].direction = "none";
                     g[no_of_grp].address[0][0] = i ;
                     g[no_of_grp].address[0][1] = j;
-
                 }
             }
         }
@@ -382,6 +377,7 @@ void sort_grp()
 
 void grp_selector()
 {
+    /* Code optimization not done*/
     for(int i=0; i<=no_of_grp; i++)
     {
         for(int j = i + 1; j<=no_of_grp; j++)
@@ -400,13 +396,10 @@ void grp_selector()
             {
                 if(g[i].direction == "horizontal")
                 {
-
                     if(g[j].direction == "horizontal" && g[j].name == "duo")
                     {
-
                         for(int m=0; m<3; m++)
                         {
-
                             if(g[i].address[m][0] == g[j].address[0][0] && g[i].address[m][1] == g[j].address[0][1] && g[i].address[m+1][0] == g[j].address[1][0] && g[i].address[m+1][1] == g[j].address[1][1])
                             {
                                 g[j].no_of_box = 0;
@@ -419,7 +412,6 @@ void grp_selector()
                                 g[j].no_of_box = 0;
                             }
                         }
-
                     }
                     if(g[j].direction == "vertical" && g[j].name == "duo")
                     {
@@ -430,8 +422,8 @@ void grp_selector()
                                 g[j].no_of_box = 0;
                             }
                         }
-
                     }
+                    /*Optimized Code*/
                      if(g[j].direction == "horizontal" && g[j].name == "duo row")
                     {
 
@@ -439,12 +431,11 @@ void grp_selector()
                            {
                                g[j].no_of_box = 0;
                            }
-
                     }
+                    /* end */
                 }
                 if(g[i].direction == "vertical")
                 {
-
                     if(g[j].direction == "horizontal" && g[j].name == "duo")
                     {
                         for(int l=0; l<4; l++)
@@ -455,7 +446,6 @@ void grp_selector()
                             }
                         }
                     }
-
                     if(g[j].direction == "vertical" && g[j].name == "duo")
                     {
                         for(int l=0; l<=6; l++)
@@ -515,7 +505,6 @@ void grp_selector()
                             }
                         }
                     }
-
                 }
             }
             if(g[i].no_of_box ==  4 && g[j].no_of_box == 1)
@@ -532,7 +521,6 @@ void grp_selector()
             {
                 if(g[i].name == "square")
                 {
-
                     if(g[j].direction  == "horizontal")
                     {
                         if(g[i].address[0][0] == g[j].address[0][0] && g[i].address[0][1] == g[j].address[0][1] && g[i].address[1][0] == g[j].address[1][0] && g[i].address[1][1] == g[j].address[1][1])
@@ -566,7 +554,6 @@ void grp_selector()
                             {
                                 g[j].no_of_box = 0;
                             }
-
                         }
                     }
                     if(g[j].direction == "vertical" && g[i].direction == "vertical")
@@ -577,7 +564,6 @@ void grp_selector()
                             {
                                 g[j].no_of_box = 0;
                             }
-
                         }
                     }
                 }
@@ -619,7 +605,6 @@ void expression()
                         cout<<" + ";
                     }
                 }
-
             }
         }
         if(g[i].no_of_box == 1)
@@ -752,7 +737,6 @@ void expression()
                     cout<<" + ";
                 }
             }
-
         }
     }
 
