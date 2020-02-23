@@ -425,13 +425,13 @@ void grp_selector()
                         }
                     }
                     /*Optimized Code*/
-                     if(g[j].direction == "horizontal" && g[j].name == "duo row")
+                    if(g[j].direction == "horizontal" && g[j].name == "duo row")
                     {
 
-                           if(g[i].address[0][0] == g[j].address[0][0] || g[i].address[4][0] == g[j].address[0][0] )
-                           {
-                               g[j].no_of_box = 0;
-                           }
+                        if(g[i].address[0][0] == g[j].address[0][0] || g[i].address[4][0] == g[j].address[0][0] )
+                        {
+                            g[j].no_of_box = 0;
+                        }
                     }
                     /* end */
                 }
@@ -551,13 +551,13 @@ void grp_selector()
                     {
                         if(g[j].name == "duo")
                         {
-                        for(int l=0; l<3; l++)
-                        {
-                            if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1] && g[i].address[l+1][0] == g[j].address[1][0] && g[i].address[l+1][1] == g[j].address[1][1] )
+                            for(int l=0; l<3; l++)
                             {
-                                g[j].no_of_box = 0;
+                                if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1] && g[i].address[l+1][0] == g[j].address[1][0] && g[i].address[l+1][1] == g[j].address[1][1] )
+                                {
+                                    g[j].no_of_box = 0;
+                                }
                             }
-                        }
                         }
                         /*Optimized */
                         else if(g[j].name == "duo row")
@@ -572,22 +572,35 @@ void grp_selector()
                     }
                     if(g[j].direction == "vertical" && g[i].direction == "vertical")
                     {
-                        for(int l=0; l<3; l++)
+                        if(g[j].name == "duo")
                         {
-                            if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1] && g[i].address[l+1][0] == g[j].address[1][0] && g[i].address[l+1][1] == g[j].address[1][1] )
+                            for(int l=0; l<3; l++)
+                            {
+                                if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1] && g[i].address[l+1][0] == g[j].address[1][0] && g[i].address[l+1][1] == g[j].address[1][1] )
+                                {
+                                    g[j].no_of_box = 0;
+                                }
+                            }
+                        }
+                        /*Code Optimized*/
+                        else if(g[j].name == "duo column")
+                        {
+                            if(g[i].address[0][1] == g[j].address[0][1])
                             {
                                 g[j].no_of_box = 0;
                             }
                         }
+                        /*end*/
+
                     }
                 }
             }
             if(g[i].no_of_box ==  2 && g[j].no_of_box == 1)
             {
-                    if((g[i].address[0][0] == g[j].address[0][0] && g[i].address[0][1] == g[j].address[0][1]) || ( g[i].address[1][0] == g[j].address[0][0] && g[i].address[1][1] == g[j].address[0][1]))
-                    {
-                        g[j].no_of_box = 0;
-                    }
+                if((g[i].address[0][0] == g[j].address[0][0] && g[i].address[0][1] == g[j].address[0][1]) || ( g[i].address[1][0] == g[j].address[0][0] && g[i].address[1][1] == g[j].address[0][1]))
+                {
+                    g[j].no_of_box = 0;
+                }
             }
         }
     }
