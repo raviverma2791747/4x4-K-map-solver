@@ -192,6 +192,18 @@ void k_map_solver()
                 {
                     cout<<"Group 4 Square Horizontal\n";
                     combination = combination + 1;
+                     no_of_grp = no_of_grp + 1;
+                    g[no_of_grp].no_of_box = 4;
+                    g[no_of_grp].address[0][0] = i;
+                    g[no_of_grp].address[0][1] = j;
+                    g[no_of_grp].address[1][0] = i;
+                    g[no_of_grp].address[1][1] = j-3;
+                    g[no_of_grp].address[2][0] = i+1;
+                    g[no_of_grp].address[2][1] = j;
+                    g[no_of_grp].address[3][0] = i+1;
+                    g[no_of_grp].address[3][1] = j-3;
+                    g[no_of_grp].name = "square row";
+                    g[no_of_grp].direction = "none";
                 }
             }
             if(i == 0 && j <= 2)
@@ -200,6 +212,18 @@ void k_map_solver()
                 {
                     cout<<"Group 4 Square Vertical\n";
                     combination = combination + 1;
+                    no_of_grp = no_of_grp + 1;
+                    g[no_of_grp].no_of_box = 4;
+                    g[no_of_grp].address[0][0] = i;
+                    g[no_of_grp].address[0][1] = j;
+                    g[no_of_grp].address[1][0] = i;
+                    g[no_of_grp].address[1][1] = j+1;
+                    g[no_of_grp].address[2][0] = i+3;
+                    g[no_of_grp].address[2][1] = j;
+                    g[no_of_grp].address[3][0] = i+3;
+                    g[no_of_grp].address[3][1] = j+1;
+                    g[no_of_grp].name = "square column";
+                    g[no_of_grp].direction = "none";
                 }
             }
             if( i == 0 && j == 3 )
@@ -544,6 +568,25 @@ void grp_selector()
                             g[j].no_of_box = 0;
                         }
                     }
+                }
+                else if(g[i].name == "square row")
+                {
+                    /*Optimized code*/
+                    if(g[j].name == "duo row")
+                    {
+                        if(g[i].address[0][0] == g[j].address[0][0] || g[i].address[2][0] == g[j].address[0][0])
+                        {
+                            g[j].no_of_box = 0;
+                        }
+                    }
+                    if(g[j].name == "duo" && g[j].direction == "vertical")
+                    {
+                        if((g[i].address[0][0] == g[j].address[0][0] && g[i].address[0][1] == g[j].address[0][1]) || (g[i].address[1][0] == g[j].address[0][0] && g[i].address[1][1] == g[j].address[0][1]))
+                        {
+                            g[j].no_of_box = 0;
+                        }
+                    }
+                    /*End*/
                 }
                 else if(g[i].name == "rectangle")
                 {
