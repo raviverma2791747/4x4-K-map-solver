@@ -232,6 +232,18 @@ void k_map_solver()
                 {
                     cout<<"Group 4 Square four corners\n";
                     combination = combination + 1;
+                     no_of_grp = no_of_grp + 1;
+                    g[no_of_grp].no_of_box = 4;
+                    g[no_of_grp].address[0][0] = i;
+                    g[no_of_grp].address[0][1] = j;
+                    g[no_of_grp].address[1][0] = i;
+                    g[no_of_grp].address[1][1] = j-3;
+                    g[no_of_grp].address[2][0] = i+3;
+                    g[no_of_grp].address[2][1] = j;
+                    g[no_of_grp].address[3][0] = i+3;
+                    g[no_of_grp].address[3][1] = j-3;
+                    g[no_of_grp].name = "square corner";
+                    g[no_of_grp].direction = "none";
                 }
             }
             /* Group 4 Rectangle*/
@@ -636,6 +648,25 @@ void grp_selector()
                         /*end*/
 
                     }
+                }
+                if(g[i].name == "square corner")
+                {
+                    /*Code Optimized*/
+                    if(g[j].name == "duo row")
+                    {
+                        if(g[j].address[0][0] == 0 || g[j].address[0][0] == 3)
+                        {
+                            g[j].no_of_box = 0;
+                        }
+                    }
+                    else if(g[j].name == "duo column")
+                    {
+                        if(g[j].address[0][1] == 0 || g[j].address[0][1] == 3)
+                        {
+                            g[j].no_of_box = 0;
+                        }
+                    }
+                    /*end*/
                 }
             }
             if(g[i].no_of_box ==  2 && g[j].no_of_box == 1)
