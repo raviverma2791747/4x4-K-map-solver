@@ -153,8 +153,27 @@ void k_map_solver()
             {
                 if(k[i][j] == 1 && k[i][j+1] == 1 && k[i][j+2] == 1 && k[i][j+3] == 1 && k[i-3][j] == 1 && k[i-3][j+1] == 1 && k[i-3][j+2] == 1 && k[i-3][j+3] == 1 )
                 {
-                    cout<<"Group 8 Column Vertical\n";
+                    cout<<"Group 8 Row Vertical\n";
                     combination = combination + 1;
+                    g[no_of_grp].no_of_box = 8;
+                    g[no_of_grp].address[0][0] = i ;
+                    g[no_of_grp].address[0][1] = j;
+                    g[no_of_grp].address[1][0] = i ;
+                    g[no_of_grp].address[1][1] = j+1;
+                    g[no_of_grp].address[2][0] = i ;
+                    g[no_of_grp].address[2][1] = j+2;
+                    g[no_of_grp].address[3][0] = i ;
+                    g[no_of_grp].address[3][1] = j+3;
+                    g[no_of_grp].address[4][0] = i-3;
+                    g[no_of_grp].address[4][1] = j;
+                    g[no_of_grp].address[5][0] = i-3;
+                    g[no_of_grp].address[5][1] = j+1;
+                    g[no_of_grp].address[6][0] = i-3;
+                    g[no_of_grp].address[6][1] = j+2;
+                    g[no_of_grp].address[7][0] = i-3;
+                    g[no_of_grp].address[7][1] = j+3;
+                    g[no_of_grp].name = "rectangle row";
+                    g[no_of_grp].direction = "horizontal";
                 }
             }
             if( i == 3 && j  == 0)
@@ -192,7 +211,7 @@ void k_map_solver()
                 {
                     cout<<"Group 4 Square Horizontal\n";
                     combination = combination + 1;
-                     no_of_grp = no_of_grp + 1;
+                    no_of_grp = no_of_grp + 1;
                     g[no_of_grp].no_of_box = 4;
                     g[no_of_grp].address[0][0] = i;
                     g[no_of_grp].address[0][1] = j;
@@ -232,7 +251,7 @@ void k_map_solver()
                 {
                     cout<<"Group 4 Square four corners\n";
                     combination = combination + 1;
-                     no_of_grp = no_of_grp + 1;
+                    no_of_grp = no_of_grp + 1;
                     g[no_of_grp].no_of_box = 4;
                     g[no_of_grp].address[0][0] = i;
                     g[no_of_grp].address[0][1] = j;
@@ -433,43 +452,53 @@ void grp_selector()
             {
                 if(g[i].direction == "horizontal")
                 {
-                    if(g[j].direction == "horizontal" && g[j].name == "duo")
+                    if(g[i].name == "rectangle")
                     {
-                        for(int m=0; m<3; m++)
+                        if(g[j].direction == "horizontal" && g[j].name == "duo")
                         {
-                            if(g[i].address[m][0] == g[j].address[0][0] && g[i].address[m][1] == g[j].address[0][1] && g[i].address[m+1][0] == g[j].address[1][0] && g[i].address[m+1][1] == g[j].address[1][1])
+                            for(int m=0; m<3; m++)
                             {
-                                g[j].no_of_box = 0;
+                                if(g[i].address[m][0] == g[j].address[0][0] && g[i].address[m][1] == g[j].address[0][1] && g[i].address[m+1][0] == g[j].address[1][0] && g[i].address[m+1][1] == g[j].address[1][1])
+                                {
+                                    g[j].no_of_box = 0;
+                                }
+                            }
+                            for(int l=4; l<7; l++)
+                            {
+                                if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1] && g[i].address[l+1][0] == g[j].address[1][0] && g[i].address[l+1][1] == g[j].address[1][1])
+                                {
+                                    g[j].no_of_box = 0;
+                                }
                             }
                         }
-                        for(int l=4; l<7; l++)
+                        if(g[j].direction == "vertical" && g[j].name == "duo")
                         {
-                            if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1] && g[i].address[l+1][0] == g[j].address[1][0] && g[i].address[l+1][1] == g[j].address[1][1])
+                            for(int l=0; l<4; l++)
                             {
-                                g[j].no_of_box = 0;
+                                if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1] && g[i].address[l+4][0] == g[j].address[1][0] && g[i].address[l+4][1] == g[j].address[1][1])
+                                {
+                                    g[j].no_of_box = 0;
+                                }
                             }
                         }
-                    }
-                    if(g[j].direction == "vertical" && g[j].name == "duo")
-                    {
-                        for(int l=0; l<4; l++)
+                        /*Optimized Code*/
+                        if(g[j].direction == "horizontal" && g[j].name == "duo row")
                         {
-                            if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1] && g[i].address[l+4][0] == g[j].address[1][0] && g[i].address[l+4][1] == g[j].address[1][1])
-                            {
-                                g[j].no_of_box = 0;
-                            }
-                        }
-                    }
-                    /*Optimized Code*/
-                    if(g[j].direction == "horizontal" && g[j].name == "duo row")
-                    {
 
-                        if(g[i].address[0][0] == g[j].address[0][0] || g[i].address[4][0] == g[j].address[0][0] )
+                            if(g[i].address[0][0] == g[j].address[0][0] || g[i].address[4][0] == g[j].address[0][0] )
+                            {
+                                g[j].no_of_box = 0;
+                            }
+                        }
+                        /* end */
+                    }
+                    if(g[i].name == "rectangle row")
+                    {
+                        if(g[j].name == "duo row")
                         {
-                            g[j].no_of_box = 0;
+
                         }
                     }
-                    /* end */
                 }
                 if(g[i].direction == "vertical")
                 {
