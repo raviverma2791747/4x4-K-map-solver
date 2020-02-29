@@ -182,6 +182,28 @@ void k_map_solver()
                 {
                     cout<<"Group 8 Column Vertical\n";
                     combination = combination + 1;
+                    g[no_of_grp].no_of_box = 8;
+                    g[no_of_grp].address[0][0] = i-3;
+                    g[no_of_grp].address[0][1] = j+3;
+                    g[no_of_grp].address[1][0] = i-3;
+                    g[no_of_grp].address[1][1] = j;
+
+                    g[no_of_grp].address[2][0] = i-2;
+                    g[no_of_grp].address[2][1] = j+3;
+                    g[no_of_grp].address[3][0] = i-2;
+                    g[no_of_grp].address[3][1] = j;
+
+                    g[no_of_grp].address[4][0] = i-1;
+                    g[no_of_grp].address[4][1] = j+3;
+                    g[no_of_grp].address[5][0] = i-1;
+                    g[no_of_grp].address[5][1] = j;
+
+                    g[no_of_grp].address[6][0] = i;
+                    g[no_of_grp].address[6][1] = j+3;
+                    g[no_of_grp].address[7][0] = i;
+                    g[no_of_grp].address[7][1] = j;
+                    g[no_of_grp].name = "rectangle column";
+                    g[no_of_grp].direction = "vertical";
                 }
             }
             /* Group 4 Square*/
@@ -402,7 +424,7 @@ void k_map_fill(int n)
     }
 }
 
-/*Tesring Function*/
+/*Testing Function*/
 void groups()
 {
     for(int i=0; i<=no_of_grp; i++)
@@ -600,6 +622,24 @@ void grp_selector()
                     if(g[j].name == "rectangle" && g[j].direction == "horizontal")
                     {
                         if(g[j].address[0][0] == 0 || g[j].address[0][0] == 3)
+                        {
+                            g[j].no_of_box = 0;
+                        }
+                    }
+                    if(g[j].name == "square corner")
+                    {
+                        g[j].no_of_box = 0;
+                    }
+                }
+                if(g[i].name == "rectangle column")
+                {
+                    if(g[j].name == "square row")
+                    {
+                        g[j].no_of_box = 0;
+                    }
+                    if(g[j].name =="rectangle" && g[j].direction == "vertical")
+                    {
+                        if(g[j].address[0][1] == 0 || g[j].address[0][1] == 3)
                         {
                             g[j].no_of_box = 0;
                         }
