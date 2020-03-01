@@ -540,25 +540,59 @@ void grp_selector()
                 }
                 if(g[i].direction == "vertical")
                 {
-                    if(g[j].direction == "horizontal" && g[j].name == "duo")
+                    if(g[i].name =="rectangle")
                     {
-                        for(int l=0; l<4; l++)
+                        if(g[j].direction == "horizontal" && g[j].name == "duo")
                         {
-                            if(g[i].address[l*2 + 0][0] == g[j].address[0][0] && g[i].address[l*2+0][1] == g[j].address[0][1] && g[i].address[l*2+1][0] == g[j].address[1][0] && g[i].address[l*2+1][1] == g[j].address[1][1])
+                            for(int l=0; l<4; l++)
+                            {
+                                if(g[i].address[l*2 + 0][0] == g[j].address[0][0] && g[i].address[l*2+0][1] == g[j].address[0][1] && g[i].address[l*2+1][0] == g[j].address[1][0] && g[i].address[l*2+1][1] == g[j].address[1][1])
+                                {
+                                    g[j].no_of_box = 0;
+                                }
+                            }
+                        }
+                        if(g[j].direction == "vertical" && g[j].name == "duo")
+                        {
+                            for(int l=0; l<=6; l++)
+                            {
+                                if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1] && g[i].address[l+2][0] == g[j].address[1][0] && g[i].address[l+2][1] == g[j].address[1][1])
+                                {
+                                    g[j].no_of_box = 0;
+                                }
+                            }
+                        }
+                        if(g[j].direction == "vertical" && g[j].name == "duo column")
+                        {
+
+                            if(g[i].address[0][1] == g[j].address[0][1] || g[i].address[1][1] == g[j].address[0][1] )
                             {
                                 g[j].no_of_box = 0;
                             }
                         }
                     }
-                    if(g[j].direction == "vertical" && g[j].name == "duo")
+                    if(g[i].name == "rectangle column")
                     {
-                        for(int l=0; l<=6; l++)
+                        /*Optimized Code*/
+                        if(g[j].name == "duo")
                         {
-                            if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1] && g[i].address[l+2][0] == g[j].address[1][0] && g[i].address[l+2][1] == g[j].address[1][1])
+                            if(g[j].address[0][1] == 0 || g[j].address[0][1] == 3)
                             {
                                 g[j].no_of_box = 0;
                             }
                         }
+                        if(g[j].name == "duo row")
+                        {
+                            g[j].no_of_box = 0;
+                        }
+                        if(g[j].name == "duo column")
+                        {
+                            if(g[j].address[0][1] == 0 || g[j].address[0][1]== 3)
+                            {
+                                g[j].no_of_box = 0;
+                            }
+                        }
+                        /* end */
                     }
                 }
             }
@@ -566,26 +600,49 @@ void grp_selector()
             {
                 if(g[i].name == "rectangle")
                 {
-                    if(g[j].name == "square")
+                    if(g[i].direction =="horizontal")
                     {
-                        if(g[j].direction == "none" && g[i].direction == "horizontal")
+                        if(g[j].name == "square")
                         {
-                            for(int l=0; l<3; l++)
+                            if(g[j].direction == "none")
                             {
-                                if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1] && g[i].address[l+1][0] == g[j].address[1][0] && g[i].address[l+1][1] == g[j].address[1][1] && g[i].address[l+4][0] == g[j].address[2][0] && g[i].address[l+4][1] == g[j].address[2][1] && g[i].address[l+5][0] == g[j].address[3][0] && g[i].address[l+5][1] == g[j].address[3][1] )
+                                for(int l=0; l<3; l++)
                                 {
-                                    g[j].no_of_box = 0;
+                                    if(g[i].address[l][0] == g[j].address[0][0] && g[i].address[l][1] == g[j].address[0][1] && g[i].address[l+1][0] == g[j].address[1][0] && g[i].address[l+1][1] == g[j].address[1][1] && g[i].address[l+4][0] == g[j].address[2][0] && g[i].address[l+4][1] == g[j].address[2][1] && g[i].address[l+5][0] == g[j].address[3][0] && g[i].address[l+5][1] == g[j].address[3][1] )
+                                    {
+                                        g[j].no_of_box = 0;
+                                    }
                                 }
                             }
                         }
-                        if(g[j].direction == "none" && g[i].direction == "vertical")
+                         if(g[j].name == "square row")
                         {
-                            for(int l=0; l<3; l++)
+                            if(g[j].address[0][0] == g[i].address[0][0])
                             {
-                                if(g[i].address[l*2+0][0] == g[j].address[0][0] && g[i].address[l*2+0][1] == g[j].address[0][1] && g[i].address[l*2+1][0] == g[j].address[1][0] && g[i].address[l*2+1][1] == g[j].address[1][1] && g[i].address[l*2+2][0] == g[j].address[2][0] && g[i].address[l*2+2][1] == g[j].address[2][1] && g[i].address[l*2+3][0] == g[j].address[3][0] && g[i].address[l*2+3][1] == g[j].address[3][1] )
+                                g[j].no_of_box = 0;
+                            }
+                        }
+                    }
+                    if(g[i].direction =="vertical")
+                    {
+                        if(g[j].name == "square")
+                        {
+                            if(g[j].direction == "none")
+                            {
+                                for(int l=0; l<3; l++)
                                 {
-                                    g[j].no_of_box = 0;
+                                    if(g[i].address[l*2+0][0] == g[j].address[0][0] && g[i].address[l*2+0][1] == g[j].address[0][1] && g[i].address[l*2+1][0] == g[j].address[1][0] && g[i].address[l*2+1][1] == g[j].address[1][1] && g[i].address[l*2+2][0] == g[j].address[2][0] && g[i].address[l*2+2][1] == g[j].address[2][1] && g[i].address[l*2+3][0] == g[j].address[3][0] && g[i].address[l*2+3][1] == g[j].address[3][1] )
+                                    {
+                                        g[j].no_of_box = 0;
+                                    }
                                 }
+                            }
+                        }
+                        if(g[j].name == "square column")
+                        {
+                            if(g[j].address[0][1] == g[i].address[0][1])
+                            {
+                                g[j].no_of_box = 0;
                             }
                         }
                     }
