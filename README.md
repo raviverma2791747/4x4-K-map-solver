@@ -3,4 +3,4 @@
 This program works on Sum of Products.
 It takes minterms as input and then solves the K-Map and returns the final expression
 
-![](screen 1.png)
+![](Screen 1.png)
