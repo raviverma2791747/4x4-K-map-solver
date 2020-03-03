@@ -1,10 +1,10 @@
 #include <iostream>
 #include<string>
+#include<stdlib.h>
 
 using namespace std;
 
-#define WORKZONE 0
-#define TESTING 0
+//#define TESTING
 
 struct group
 {
@@ -15,7 +15,7 @@ struct group
 };
 
 int k[4][4];
-int table[16][1] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+int table[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 int combination = 0;
 int no_of_grp = -1;
 group g[80];
@@ -25,46 +25,46 @@ void _table()
     cout<<"+---------+---+\n";
     cout<<"| a b c d |   |\n";
     cout<<"+---------+---+\n";
-    cout<<"| 0 0 0 0 | "<<table[0][0]<<" |\n";
-    cout<<"| 0 0 0 1 | "<<table[1][0]<<" |\n";
-    cout<<"| 0 0 1 0 | "<<table[2][0]<<" |\n";
-    cout<<"| 0 0 1 1 | "<<table[3][0]<<" |\n";
-    cout<<"| 0 1 0 0 | "<<table[4][0]<<" |\n";
-    cout<<"| 0 1 0 1 | "<<table[5][0]<<" |\n";
-    cout<<"| 0 1 1 0 | "<<table[6][0]<<" |\n";
-    cout<<"| 0 1 1 1 | "<<table[7][0]<<" |\n";
-    cout<<"| 1 0 0 0 | "<<table[8][0]<<" |\n";
-    cout<<"| 1 0 0 1 | "<<table[9][0]<<" |\n";
-    cout<<"| 1 0 1 0 | "<<table[10][0]<<" |\n";
-    cout<<"| 1 0 1 1 | "<<table[11][0]<<" |\n";
-    cout<<"| 1 1 0 0 | "<<table[12][0]<<" |\n";
-    cout<<"| 1 1 0 1 | "<<table[13][0]<<" |\n";
-    cout<<"| 1 1 1 0 | "<<table[14][0]<<" |\n";
-    cout<<"| 1 1 1 1 | "<<table[15][0]<<" |\n";
+    cout<<"| 0 0 0 0 | "<<table[0]<<" |\n";
+    cout<<"| 0 0 0 1 | "<<table[1]<<" |\n";
+    cout<<"| 0 0 1 0 | "<<table[2]<<" |\n";
+    cout<<"| 0 0 1 1 | "<<table[3]<<" |\n";
+    cout<<"| 0 1 0 0 | "<<table[4]<<" |\n";
+    cout<<"| 0 1 0 1 | "<<table[5]<<" |\n";
+    cout<<"| 0 1 1 0 | "<<table[6]<<" |\n";
+    cout<<"| 0 1 1 1 | "<<table[7]<<" |\n";
+    cout<<"| 1 0 0 0 | "<<table[8]<<" |\n";
+    cout<<"| 1 0 0 1 | "<<table[9]<<" |\n";
+    cout<<"| 1 0 1 0 | "<<table[10]<<" |\n";
+    cout<<"| 1 0 1 1 | "<<table[11]<<" |\n";
+    cout<<"| 1 1 0 0 | "<<table[12]<<" |\n";
+    cout<<"| 1 1 0 1 | "<<table[13]<<" |\n";
+    cout<<"| 1 1 1 0 | "<<table[14]<<" |\n";
+    cout<<"| 1 1 1 1 | "<<table[15]<<" |\n";
     cout<<"+---------+---+\n";
 }
 
 void k_map_fill()
 {
-    k[0][0] = table[0][0];
-    k[0][1] = table[1][0];
-    k[0][2] = table[3][0];
-    k[0][3] = table[2][0];
+    k[0][0] = table[0];
+    k[0][1] = table[1];
+    k[0][2] = table[3];
+    k[0][3] = table[2];
 
-    k[1][0] = table[4][0];
-    k[1][1] = table[5][0];
-    k[1][2] = table[7][0];
-    k[1][3] = table[6][0];
+    k[1][0] = table[4];
+    k[1][1] = table[5];
+    k[1][2] = table[7];
+    k[1][3] = table[6];
 
-    k[2][0] = table[12][0];
-    k[2][1] = table[13][0];
-    k[2][2] = table[15][0];
-    k[2][3] = table[14][0];
+    k[2][0] = table[12];
+    k[2][1] = table[13];
+    k[2][2] = table[15];
+    k[2][3] = table[14];
 
-    k[3][0] = table[8][0];
-    k[3][1] = table[9][0];
-    k[3][2] = table[11][0];
-    k[3][3] = table[10][0];
+    k[3][0] = table[8];
+    k[3][1] = table[9];
+    k[3][2] = table[11];
+    k[3][3] = table[10];
 }
 
 void k_map_display()
@@ -98,9 +98,9 @@ void k_map_solver()
             {
                 if(k[i][j] == 1 && k[i][j+1] == 1 && k[i][j+2] == 1 && k[i][j+3] == 1 && k[i+1][j] == 1 && k[i+1][j+1] == 1 && k[i+1][j+2] == 1 && k[i+1][j+3] == 1 )
                 {
-                    #ifdef TESTING
+#ifdef TESTING
                     cout<<"Group 8 Row\n";
-                    #endif
+#endif
                     combination = combination + 1;
                     no_of_grp = no_of_grp + 1;
                     g[no_of_grp].no_of_box = 8;
@@ -128,9 +128,9 @@ void k_map_solver()
             {
                 if(k[i][j] == 1 && k[i+1][j] == 1 && k[i+2][j] == 1 && k[i+3][j] == 1 && k[i][j+1] == 1 && k[i+1][j+1] == 1 && k[i+2][j+1] == 1 && k[i+3][j+1] == 1 )
                 {
-                    #ifdef TESTING
+#ifdef TESTING
                     cout<<"Group 8 Column\n";
-                    #endif // TESTING
+#endif // TESTING
                     combination = combination + 1;
                     no_of_grp = no_of_grp + 1;
                     g[no_of_grp].no_of_box = 8;
@@ -158,9 +158,9 @@ void k_map_solver()
             {
                 if(k[i][j] == 1 && k[i][j+1] == 1 && k[i][j+2] == 1 && k[i][j+3] == 1 && k[i-3][j] == 1 && k[i-3][j+1] == 1 && k[i-3][j+2] == 1 && k[i-3][j+3] == 1 )
                 {
-                    #ifdef TESTING
+#ifdef TESTING
                     cout<<"Group 8 Row Horizontal\n";
-                    #endif // TESTING
+#endif // TESTING
                     combination = combination + 1;
                     g[no_of_grp].no_of_box = 8;
                     g[no_of_grp].address[0][0] = i ;
@@ -187,9 +187,9 @@ void k_map_solver()
             {
                 if(k[i][j] == 1 && k[i-1][j] == 1 && k[i-2][j] == 1 && k[i-3][j] == 1 && k[i][j+3] == 1 && k[i-1][j+3] == 1 && k[i-2][j+3] == 1 && k[i-3][j+3] == 1 )
                 {
-                    #ifdef TESTING
+#ifdef TESTING
                     cout<<"Group 8 Column Vertical\n";
-                    #endif // TESTING
+#endif // TESTING
                     combination = combination + 1;
                     g[no_of_grp].no_of_box = 8;
                     g[no_of_grp].address[0][0] = i-3;
@@ -220,9 +220,9 @@ void k_map_solver()
             {
                 if(k[i][j] == 1 && k[i][j+1]==1 && k[i+1][j] == 1 && k[i+1][j+1] == 1 )
                 {
-                    #ifdef TESTING
+#ifdef TESTING
                     cout<<"Group 4 square\n";
-                    #endif // TESTING
+#endif // TESTING
                     combination = combination + 1;
                     no_of_grp = no_of_grp + 1;
                     g[no_of_grp].no_of_box = 4;
@@ -242,9 +242,9 @@ void k_map_solver()
             {
                 if(k[i][j] == 1 && k[i+1][j] == 1 && k[i][j-3] == 1 && k[i+1][j-3])
                 {
-                    #ifdef TESTING
+#ifdef TESTING
                     cout<<"Group 4 Square Horizontal\n";
-                    #endif // TESTING
+#endif // TESTING
                     combination = combination + 1;
                     no_of_grp = no_of_grp + 1;
                     g[no_of_grp].no_of_box = 4;
@@ -264,9 +264,9 @@ void k_map_solver()
             {
                 if(k[i][j] ==  1 && k[i][j+1] == 1 && k[i+3][j] == 1 && k[i+3][j+1] == 1)
                 {
-                    #ifdef TESTING
+#ifdef TESTING
                     cout<<"Group 4 Square Vertical\n";
-                    #endif // TESTING
+#endif // TESTING
                     combination = combination + 1;
                     no_of_grp = no_of_grp + 1;
                     g[no_of_grp].no_of_box = 4;
@@ -286,9 +286,9 @@ void k_map_solver()
             {
                 if(k[i][j] ==  1 && k[i+3][j]==1 && k[i][j-3] == 1 && k[i+3][j-3] == 1)
                 {
-                    #ifdef TESTING
+#ifdef TESTING
                     cout<<"Group 4 Square four corners\n";
-                    #endif // TESTING
+#endif // TESTING
                     combination = combination + 1;
                     no_of_grp = no_of_grp + 1;
                     g[no_of_grp].no_of_box = 4;
@@ -309,9 +309,9 @@ void k_map_solver()
             {
                 if(k[i][j] == 1 && k[i][j+1]== 1 && k[i][j+2] == 1 && k[i][j+3] == 1)
                 {
-                    #ifdef TESTING
+#ifdef TESTING
                     cout<<"Group 4 Rectangle Row\n";
-                    #endif // TESTING
+#endif // TESTING
                     combination = combination + 1;
                     no_of_grp = no_of_grp + 1;
                     g[no_of_grp].no_of_box = 4;
@@ -331,9 +331,9 @@ void k_map_solver()
             {
                 if(k[i][j] == 1 && k[i+1][j]== 1 && k[i+2][j] == 1 && k[i+3][j] == 1)
                 {
-                    #ifdef TESTING
+#ifdef TESTING
                     cout<<"Group 4 Rectangle Column\n";
-                    #endif // TESTING
+#endif // TESTING
                     combination = combination + 1;
                     no_of_grp = no_of_grp + 1;
                     g[no_of_grp].no_of_box = 4;
@@ -354,9 +354,9 @@ void k_map_solver()
             {
                 if(k[i][j]==1 && k[i][j+1]==1)
                 {
-                    #ifdef TESTING
+#ifdef TESTING
                     cout<<"Group 2 Row\n";
-                    #endif // TESTING
+#endif // TESTING
                     combination = combination + 1;
                     no_of_grp = no_of_grp + 1;
                     g[no_of_grp].no_of_box = 2;
@@ -372,9 +372,9 @@ void k_map_solver()
             {
                 if(k[i][j]==1 && k[i][j-3]==1)
                 {
-                    #ifdef TESTING
+#ifdef TESTING
                     cout<<"Group 2 Row Horizontal\n";
-                    #endif // TESTING
+#endif // TESTING
                     combination = combination + 1;
                     no_of_grp = no_of_grp + 1;
                     g[no_of_grp].no_of_box = 2;
@@ -391,9 +391,9 @@ void k_map_solver()
             {
                 if(k[i][j]==1 && k[i+1][j]==1)
                 {
-                    #ifdef TESTING
+#ifdef TESTING
                     cout<<"Group 2 Column\n";
-                    #endif // TESTING
+#endif // TESTING
                     combination = combination + 1;
                     no_of_grp = no_of_grp + 1;
                     g[no_of_grp].no_of_box = 2;
@@ -409,9 +409,9 @@ void k_map_solver()
             {
                 if(k[i][j]==1 && k[i-3][j]==1)
                 {
-                    #ifdef TESTING
+#ifdef TESTING
                     cout<<"Group 2 Column Vertical\n";
-                    #endif // TESTING
+#endif // TESTING
                     combination = combination + 1;
                     no_of_grp = no_of_grp + 1;
                     g[no_of_grp].no_of_box = 2;
@@ -428,9 +428,9 @@ void k_map_solver()
             {
                 if(k[i][j] == 1)
                 {
-                    #ifdef TESTING
+#ifdef TESTING
                     cout<<"Group 1\n";
-                    #endif // TESTING
+#endif // TESTING
                     combination = combination + 1;
                     no_of_grp = no_of_grp + 1;
                     g[no_of_grp].no_of_box = 1;
@@ -649,7 +649,7 @@ void grp_selector()
                                 }
                             }
                         }
-                         if(g[j].name == "square row")
+                        if(g[j].name == "square row")
                         {
                             if(g[j].address[0][0] == g[i].address[0][0])
                             {
@@ -1042,30 +1042,63 @@ void expression()
 
 void input()
 {
-     int n=0;
+    int n=0;
     char choice = 'y';
-
+#ifdef TESTING
     while(choice != 'n')
     {
         cout<<"Enter minterms \n";
         cin>>n;
-        table[n][0]=1;
+        table[n]=1;
         cout<<"Do you want to enter more minterms\n";
         cin>>choice;
     }
+#endif // TESTING
+
 }
 
+void menu()
+{
+    int choice = 0;
+    while(choice != 5)
+    {
+        system("cls");
+        cout<<"==================================================\n";
+        cout<<"                    MENU\n";
+        cout<<"==================================================\n";
+        cout<<"[1]Solve SOP\n";
+        cout<<"[2]Fill Table\n";
+        cout<<"[3]Fill K Map\n";
+        cout<<"[4]Help\n";
+        cout<<"[5]Exit\n";
+        cout<<"::";
+        cin>>choice;
+        switch(choice)
+        {
+        case 1:
+            cout<<"Working!\n";
+            break;
+        default :
+            cout<<"Invalid Choice Try again!\n";
+            cout<<"or press 4 for help\n";
+            system("pause");
+        }
+    }
+}
 int main(int argc, char *argv[])
 {
-
+#ifndef TESTING
+    menu();
+#endif // TESTING
+#ifdef TESTING
     input();
     _table();
     k_map_fill();
     k_map_display();
     k_map_solver();
-    #ifdef TESTING
+    grp_selector();
+    cout<<"Groups after selection\n";
     groups();
-    #endif
-
+#endif
     return 0;
 }
