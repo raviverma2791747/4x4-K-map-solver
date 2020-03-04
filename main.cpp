@@ -1042,7 +1042,7 @@ void expression()
 
 void input()
 {
-    int n=0;
+    int n=0,_choice=0;
     char choice = 'y';
 #ifdef TESTING
     while(choice != 'n')
@@ -1054,9 +1054,34 @@ void input()
         cin>>choice;
     }
 #endif // TESTING
+#ifndef TESTING
+while(choice != 3)
+{
+    cout<<"==================================================\n";
+    cout<<"                    INPUT\n";
+    cout<<"==================================================\n";
+    cout<<"[1]\n";
+    cout<<"[2]\n";
+    cout<<"[3]Exit\n";
+    cin>>_choice;
+}
+#endif // TESTING
 
 }
 
+#ifdef TESTING
+void testing()
+{
+    input();
+    _table();
+    k_map_fill();
+    k_map_display();
+    k_map_solver();
+    grp_selector();
+    cout<<"Groups after selection\n";
+    groups();
+}
+#endif // TESTING
 void menu()
 {
     int choice = 0;
@@ -1075,8 +1100,10 @@ void menu()
         cin>>choice;
         switch(choice)
         {
+        case 0:
+            break;
         case 1:
-            cout<<"Working!\n";
+            input();
             break;
         default :
             cout<<"Invalid Choice Try again!\n";
@@ -1091,14 +1118,7 @@ int main(int argc, char *argv[])
     menu();
 #endif // TESTING
 #ifdef TESTING
-    input();
-    _table();
-    k_map_fill();
-    k_map_display();
-    k_map_solver();
-    grp_selector();
-    cout<<"Groups after selection\n";
-    groups();
+    testing();
 #endif
     return 0;
 }
